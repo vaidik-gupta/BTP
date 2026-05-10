@@ -131,7 +131,6 @@ Thumbs.db
 .directory
 
 # Data files (large numpy arrays and datasets)
-*.npy
 *.npz
 *.h5
 *.hdf5

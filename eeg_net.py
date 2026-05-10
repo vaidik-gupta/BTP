@@ -51,3 +51,16 @@ def EEGNet(nb_classes, Chans=64, Samples=128, dropoutRate=0.5, F1=4, D=2, F2=8, 
     
     return Model(inputs=input_main, outputs=softmax)
 
+
+
+class EEGNetClassifier(Model):
+    def __init__(self, nb_classes, Chans=64, Samples=128, dropoutRate=0.5, F1=4, D=2, F2=8):
+        super(EEGNetClassifier, self).__init__()
+        self.eegnet = EEGNet(nb_classes, Chans, Samples, dropoutRate, F1, D, F2)
+
+    def train(self, inputs, labels, epochs=10, batch_size=32):
+        self.eegnet.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy', 'AUC', 'F1Score', 'Precision', 'Recall'])
+        self.eegnet.fit(inputs, labels, epochs=epochs, batch_size=batch_size)
+    
+    def call(self, inputs):
+        return self.eegnet(inputs)
