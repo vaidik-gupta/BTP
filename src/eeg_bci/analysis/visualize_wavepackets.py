@@ -3,13 +3,15 @@ import matplotlib.pyplot as plt
 import glob
 import os
 
+from eeg_bci.paths import DATA_DIR
+
 
 def _find_dataset_paths():
-    x_candidates = sorted(glob.glob('eeg_dataset_X*.npy'))
-    y_candidates = sorted(glob.glob('eeg_dataset_y*.npy'))
+    x_candidates = sorted(glob.glob(str(DATA_DIR / '**' / 'eeg_dataset_X*.npy'), recursive=True))
+    y_candidates = sorted(glob.glob(str(DATA_DIR / '**' / 'eeg_dataset_y*.npy'), recursive=True))
 
     if not x_candidates or not y_candidates:
-        raise FileNotFoundError('No eeg_dataset_X*.npy or eeg_dataset_y*.npy files found in working directory.')
+        raise FileNotFoundError(f'No eeg_dataset_X*.npy or eeg_dataset_y*.npy files found under {DATA_DIR}.')
 
     x_path = x_candidates[0]
     y_path = y_candidates[0]
@@ -64,4 +66,9 @@ def visualize_wavepackets(label='wink', n_visualizations=5, x_path=None, y_path=
 
 
 if __name__ == '__main__':
-    visualize_wavepackets(label="Left", n_visualizations=5, x_path='direction_waves_X1.npy', y_path='direction_waves_y1.npy')
+    visualize_wavepackets(
+        label="Left",
+        n_visualizations=5,
+        x_path=str(DATA_DIR / 'raw' / 'direction_waves_X1.npy'),
+        y_path=str(DATA_DIR / 'raw' / 'direction_waves_y1.npy'),
+    )

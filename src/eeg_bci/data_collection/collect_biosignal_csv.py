@@ -2,6 +2,8 @@ import time
 import csv
 from pylsl import StreamInlet, resolve_streams
 
+from eeg_bci.paths import RAW_DATA_DIR
+
 # =====================================
 # CONFIG
 # =====================================
@@ -10,7 +12,7 @@ STREAM_NAME_KEYWORD = ""   # keep empty to connect to first stream
 TIMEOUT = 10
 RETRIES = 5
 
-OUTPUT_FILE = "biosignal_data_final_left.csv"
+OUTPUT_FILE = str(RAW_DATA_DIR / "biosignal_data_final_left.csv")
 
 TOTAL_DURATION = 600       # 10 minutes
 STATE_DURATION = 5         # 5 sec REST / 5 sec CURL

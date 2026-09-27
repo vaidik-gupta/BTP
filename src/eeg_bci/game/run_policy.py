@@ -6,7 +6,7 @@ import numpy as np
 import tensorflow as tf
 from pylsl import StreamInlet, resolve_byprop
 
-from eeg_game import EEGConeGame
+from eeg_bci.game.cone_game import EEGConeGame
 
 FS = 250  # EEG Sampling Frequency (Hz)
 TIME_WINDOW = 1.0  # Time window for each action (seconds)

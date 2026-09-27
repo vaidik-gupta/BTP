@@ -1,4 +1,5 @@
-from eeg_net import EEGNet
+from eeg_bci.models.eeg_net import EEGNet
+from eeg_bci.paths import CURL_DATA_DIR, ARTIFACTS_DIR
 import numpy as np
 import tensorflow as tf
 
@@ -25,10 +26,10 @@ def train_eegnet(X, y, epochs = 10, batch_size = 32):
 def main1(past = "past"):
 
     ## read X_past_left and y_past_left from .npy files
-    X_left = np.load('X_' + past + '_left.npy')
-    y_left = np.load('Y_' + past + '_left.npy')
-    X_right = np.load('X_' + past + '_right.npy')
-    y_right = np.load('Y_' + past + '_right.npy')
+    X_left = np.load(CURL_DATA_DIR / f'X_{past}_left.npy')
+    y_left = np.load(CURL_DATA_DIR / f'Y_{past}_left.npy')
+    X_right = np.load(CURL_DATA_DIR / f'X_{past}_right.npy')
+    y_right = np.load(CURL_DATA_DIR / f'Y_{past}_right.npy')
 
 
     # Combine left and right data
@@ -59,7 +60,7 @@ def main1(past = "past"):
     plt.xlabel('Predicted')
     plt.ylabel('True')
     plt.title('Confusion Matrix')
-    plt.savefig('confusion_matrix_' + past + '.png')
+    plt.savefig(ARTIFACTS_DIR / f'confusion_matrix_{past}.png')
 
 
 

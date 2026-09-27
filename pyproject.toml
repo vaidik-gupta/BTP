@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eeg-bci"
+version = "0.1.0"
+description = "8-channel EEG brain-computer interface: PPO agent controlling a game from motor-imagery brain waves"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "tensorflow",
+    "pygame",
+    "pylsl",
+]
+
+[project.optional-dependencies]
+# Extras only needed for the offline benchmarking scripts.
+benchmark = ["moabb", "mne"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

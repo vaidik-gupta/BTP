@@ -5,11 +5,13 @@ import pandas as pd
 import time
 from datetime import datetime
 
+from eeg_bci.paths import RAW_DATA_DIR
+
 # =========================
 # SETTINGS
 # =========================
 SAVE_SECONDS = 600        # how long to record (10 min)
-OUTPUT_FILE = f"xon_data_2_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+OUTPUT_FILE = str(RAW_DATA_DIR / f"xon_data_2_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv")
 
 # =========================
 # FIND LSL STREAM

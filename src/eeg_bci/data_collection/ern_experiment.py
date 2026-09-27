@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from pylsl import StreamInlet, resolve_byprop
 
+from eeg_bci.paths import RAW_DATA_DIR
+
 N_DATASET = 2
 
 FS = 250                  # EEG sampling rate (change to your device rate)
@@ -105,10 +107,10 @@ def run_experiment():
     X2 = np.array(dataset_feedback)
     y2 = np.array(labels_feedback)
 
-    np.save(f"direction_waves_X{N_DATASET}.npy", X1)
-    np.save(f"direction_waves_y{N_DATASET}.npy", y1)
-    np.save(f"ERN_X{N_DATASET}.npy", X2)
-    np.save(f"ERN_y{N_DATASET}.npy", y2)
+    np.save(RAW_DATA_DIR / f"direction_waves_X{N_DATASET}.npy", X1)
+    np.save(RAW_DATA_DIR / f"direction_waves_y{N_DATASET}.npy", y1)
+    np.save(RAW_DATA_DIR / f"ERN_X{N_DATASET}.npy", X2)
+    np.save(RAW_DATA_DIR / f"ERN_y{N_DATASET}.npy", y2)
 
     print("Saved datasets:")
     print(" - direction_waves_X.npy", X1.shape)

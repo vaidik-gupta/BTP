@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 from pylsl import StreamInlet, resolve_byprop
 
+from eeg_bci.paths import RAW_DATA_DIR
+
 # ----------------------------
 # Parameters
 # ----------------------------
@@ -116,7 +118,7 @@ print("Dataset shape:", X.shape)
 # Save dataset
 # ----------------------------
 
-np.save("eeg_dataset_X_devansh2.npy", X)
-np.save("eeg_dataset_y_devansh2.npy", y)
+np.save(RAW_DATA_DIR / "eeg_dataset_X_devansh2.npy", X)
+np.save(RAW_DATA_DIR / "eeg_dataset_y_devansh2.npy", y)
 
 print("Dataset saved!")

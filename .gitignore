@@ -152,3 +152,10 @@ Thumbs.db
 
 *.png
 *.csv
+
+# Project data & generated artifacts (kept local, not tracked)
+/data/
+/artifacts/
+/models_saved/
+*.npy
+*.keras

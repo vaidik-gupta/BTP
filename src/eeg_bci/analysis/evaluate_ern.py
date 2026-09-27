@@ -6,8 +6,14 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.decomposition import PCA
+
+# NOTE: `ProcessingApp` is an external EEG cleaning package that is NOT vendored in
+# this repo. Install/provide it before running this script, or comment out the
+# cleaning step in evaluate_ern_dataset() to run on raw signals.
 from ProcessingApp.EEGCleaningPipeline import EEGCleaningPipeline
 from ProcessingApp.Signals import TimeDomainSignal
+
+from eeg_bci.paths import DATA_DIR
 
 def evaluate_ern_dataset(X_paths, y_paths):
     # 1. Load the data
@@ -78,5 +84,7 @@ def evaluate_ern_dataset(X_paths, y_paths):
         print(f"  ROC-AUC:   {scores['test_roc_auc'].mean():.4f} (+/- {scores['test_roc_auc'].std():.4f})")
         print(f"  F1 (Macro):{scores['test_f1_macro'].mean():.4f} (+/- {scores['test_f1_macro'].std():.4f})")
 
-# Example usage:
-evaluate_ern_dataset(['ERN_X1.npy'], ['ERN_y1.npy'])
+if __name__ == "__main__":
+    # Example usage: point at collected ERN datasets under data/raw/
+    evaluate_ern_dataset([str(DATA_DIR / 'raw' / 'ERN_X1.npy')],
+                         [str(DATA_DIR / 'raw' / 'ERN_y1.npy')])

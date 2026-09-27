@@ -7,9 +7,10 @@ import numpy as np
 import tensorflow as tf
 from pylsl import StreamInlet, resolve_byprop
 
-from eeg_game import EEGConeGame
-from PPO import PPOAgentTF
-from eeg_net import EEGNet
+from eeg_bci.game.cone_game import EEGConeGame
+from eeg_bci.models.ppo import PPOAgentTF
+from eeg_bci.models.eeg_net import EEGNet
+from eeg_bci.paths import MODELS_DIR
 
 FS = 250  # EEG Sampling Frequency (Hz)
 TIME_WINDOW = 1.0  # Time window for each action (seconds)
@@ -23,7 +24,7 @@ PAUSE_AFTER_EPISODES = 10
 
 PLAYER = "VAIDIK"
 TRIAL = 2
-MODEL_DIR = "ConeGameModels"
+MODEL_DIR = str(MODELS_DIR)
 
 # EEG channels + 1 for time
 CHANS = 9

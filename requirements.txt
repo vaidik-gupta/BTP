@@ -1,0 +1,17 @@
+# Core
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+
+# Deep learning / RL
+tensorflow
+
+# Game + live EEG streaming
+pygame
+pylsl
+
+# Offline benchmarking only (src/eeg_bci/analysis/moabb_benchmark.py)
+moabb
+mne

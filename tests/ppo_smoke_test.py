@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 
-from PPO import PPOAgentTF
+from eeg_bci.models.ppo import PPOAgentTF
 
 
 class SimpleEnv:

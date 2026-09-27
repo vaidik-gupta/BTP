@@ -9,7 +9,8 @@ from moabb.paradigms import P300
 from moabb.evaluations import CrossSessionEvaluation
 from mne.decoding import CSP
 from tensorflow.keras.utils import to_categorical
-from eeg_net import EEGNetClassifier
+from eeg_bci.models.eeg_net import EEGNetClassifier
+from eeg_bci.paths import ARTIFACTS_DIR
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -154,7 +155,7 @@ def print_results_table(results_list):
     return df
 
 
-def plot_confusion_matrices(results_list, save_path='confusion_matrices.png'):
+def plot_confusion_matrices(results_list, save_path=ARTIFACTS_DIR / 'confusion_matrices.png'):
     """Plot confusion matrices for all datasets"""
     fig, axes = plt.subplots(1, len(results_list), figsize=(6*len(results_list), 5))
     
@@ -183,7 +184,7 @@ def plot_confusion_matrices(results_list, save_path='confusion_matrices.png'):
     plt.close()
 
 
-def plot_training_history(results_list, save_path='training_history.png'):
+def plot_training_history(results_list, save_path=ARTIFACTS_DIR / 'training_history.png'):
     """Plot training history for all datasets"""
     fig, axes = plt.subplots(1, len(results_list), figsize=(6*len(results_list), 4))
     
@@ -349,7 +350,7 @@ def main():
         
         # Print results table
         df = print_results_table(results_all)
-        df.to_csv('benchmark_results.csv', index=False)
+        df.to_csv(ARTIFACTS_DIR / 'benchmark_results.csv', index=False)
         print("Results saved to benchmark_results.csv")
         
         # Plot confusion matrices
